@@ -11,6 +11,10 @@ import pandas as pd
 from django.http import HttpResponse
 from django.http.response import JsonResponse
 from collections import defaultdict
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
 
 def copy(request):
     return render(request, "app/pages/copy_cy.html")
@@ -172,6 +176,13 @@ def get_chart(request):
 
         carrera_count[carrera][fecha] += 1  # Incrementar el contador
 
+<<<<<<< HEAD
+    # Preparar datos para el gráfico circular (porcentaje de solicitudes por carrera)
+    total_por_carrera = {
+        carrera: sum(fechas.values()) for carrera, fechas in carrera_count.items()
+    }
+
+=======
     # Preparar los datos para el gráfico de líneas (nuevos)
     fechas_lineas = sorted(set(fecha for fechas in carrera_count.values() for fecha in fechas))
     
@@ -189,20 +200,31 @@ def get_chart(request):
     # Preparar datos para el gráfico circular (porcentaje de solicitudes por carrera)
     total_por_carrera = {carrera: sum(fechas.values()) for carrera, fechas in carrera_count.items()}
     
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
     pie_data_carreras = [
         {
             "value": count,
             "name": carrera,
+<<<<<<< HEAD
+            "itemStyle": {"color": f"#{hash(carrera) % 0xFFFFFF:06x}"},
+=======
             "itemStyle": {'color': f'#{hash(carrera) % 0xFFFFFF:06x}'},  # Color único por carrera
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
         }
         for carrera, count in total_por_carrera.items()
     ]
 
+<<<<<<< HEAD
+    # Obtener datos de la tabla registros becados
+    registros_becados = Registro_becado.objects.all()
+
+=======
 
 
     # Obtener datos de la tabla registros becados 
     registros_becados = Registro_becado.objects.all()
     
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
     # Agrupar estatus por fecha
     estatus_count = {"Aceptado": {}, "Rechazado": {}}
 
@@ -231,7 +253,11 @@ def get_chart(request):
     conteos_rechazados = [
         estatus_count["Rechazado"].get(fecha, 0) for fecha in fechas_becados
     ]
+<<<<<<< HEAD
+
+=======
     
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
     conteo_todos = [
         estatus_count["Aceptado"].get(fecha, 0)
         + estatus_count["Rechazado"].get(fecha, 0)
@@ -274,7 +300,11 @@ def get_chart(request):
     charts = {
         "chart1": {
             "title": {"text": "Conteo de Registros por Mes", "left": "center"},
+<<<<<<< HEAD
+            "legend": {
+=======
             "legend": {  
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
                 "data": ["Aceptados", "Rechazados", "Todos"],
                 "left": "left",
                 "orient": "vertical",
@@ -304,9 +334,13 @@ def get_chart(request):
                     "data": conteo_todos,
                     "type": "line",
                     "smooth": True,
+<<<<<<< HEAD
+                    "itemStyle": {"color": "#0000FF"},
+=======
                     "itemStyle": {
                         "color": "#0000FF"
                     },
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
                 },
             ],
             "tooltip_data": detalles_tooltip,
@@ -321,6 +355,18 @@ def get_chart(request):
                         'formatter': '{a} <br/>{b}: {c} ({d}%)'},
             'series': [
                 {
+<<<<<<< HEAD
+                    "name": "Registros:",
+                    "type": "pie",
+                    "radius": ["40%", "70%"],
+                    "center": ["50%", "50%"],
+                    "data": pie_data,
+                    "emphasis": {
+                        "itemStyle": {
+                            "shadowBlur": 10,
+                            "shadowOffsetX": 0,
+                            "shadowColor": "rgba(0, 0, 0, 0.5)",
+=======
                     'name': 'Registros:',
                     'type': 'pie',
                     'radius': ['40%', '70%'],  
@@ -331,10 +377,45 @@ def get_chart(request):
                             'shadowBlur': 10,
                             'shadowOffsetX': 0,
                             'shadowColor': 'rgba(0, 0, 0, 0.5)',
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
                         }
                     },
                 }
             ],
+<<<<<<< HEAD
+        },
+        "chart3": {
+            "title": {
+                "text": "Distribución Porcentual de Solicitudes por Carrera",
+                "left": "center",
+            },
+            "tooltip": {
+                "trigger": "item",
+                "formatter": "{a} <br/>{b}: {c} ({d}%)",
+            },
+            "legend": {
+                "orient": "vertical",
+                "left": "left",
+                "data": list(total_por_carrera.keys()),
+            },
+            "series": [
+                {
+                    "name": "Carreras",
+                    "type": "pie",
+                    "radius": ["40%", "70%"],
+                    "center": ["50%", "50%"],
+                    "data": pie_data_carreras,
+                    "emphasis": {
+                        "itemStyle": {
+                            "shadowBlur": 10,
+                            "shadowOffsetX": 0,
+                            "shadowColor": "rgba(0, 0, 0, 0.5)",
+                        }
+                    },
+                }
+            ],
+        },
+=======
         },        
          "chart3": {  
              "title": {  
@@ -367,6 +448,7 @@ def get_chart(request):
                  }   
              ],   
          },   
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
     }
 
     return JsonResponse(charts)
@@ -454,8 +536,11 @@ def form_registro(request):
     if request.method == "POST":
         # Recoger datos del formulario
         nombre = request.POST.get("nombre")
+        nombre2 = request.POST.get("nombre2")
         apellido = request.POST.get("apellido")
+        apellido2 = request.POST.get("apellido2")
         cedula = request.POST.get("cedula")
+        edad = request.POST.get("edad")
         f_nacimiento = request.POST.get("f_nacimiento")
         ubicacion = request.POST.get("ubicacion")
         email = request.POST.get("email")
@@ -487,8 +572,11 @@ def form_registro(request):
             # Crear nueva solicitud
             nueva_solicitud = Registro_becado(
                 nombre=nombre,
+                nombre2=nombre2,
                 apellido=apellido,
+                apellido2=apellido2,
                 cedula=cedula,
+                edad=edad,
                 f_nacimiento=f_nacimiento,
                 ubicacion=ubicacion,
                 email=email,

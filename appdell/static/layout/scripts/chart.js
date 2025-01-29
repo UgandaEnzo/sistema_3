@@ -38,6 +38,10 @@ const initCharts = async () => {
 
     // Inicializar el tercer gráfico (nuevo gráfico de líneas para solicitudes por fecha)
     const chart3 = echarts.init(document.getElementById('grafico3'));
+<<<<<<< HEAD
+    chart3.setOption(chartData.chart3);
+    };
+=======
 
     chartData.chart3.tooltip = {
         trigger: 'axis', // Tooltip dinámico al pasar sobre un punto en el eje X
@@ -62,6 +66,7 @@ const initCharts = async () => {
 
     chart4.setOption(chartData.chart4);
 };
+>>>>>>> 5bd7d2b98482970381bb73408dd9c29071e68260
 
 window.addEventListener('load', async () => {
     await initCharts();

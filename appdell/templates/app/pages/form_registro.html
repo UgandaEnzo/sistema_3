@@ -15,7 +15,7 @@ Registro
         <li><a href="#">Home</a></li>
         <li><a href="#">Login</a></li>
         <li><a href="#">Services</a></li>
-        <li><a href="#">Registro</a></li>
+        <li><a href="#">Registrar estudiantes</a></li>
       </ul>
     </div>
   </div>
@@ -91,7 +91,14 @@ Registro
         box-shadow: none;
         opacity: 80%;
       }
-    </style>
+
+      input, .date, select, textarea {
+            padding: 8px; /* Espaciado interno en celdas */
+            text-align: center; /* Alineación del texto */
+            border: 1px solid #ddd; /* Bordes de las celdas */
+            
+        }
+    </style> 
     <form action="{% url 'registrar' %}" method="post">
 
       {% csrf_token %}
@@ -100,16 +107,28 @@ Registro
       <h2>Información Personal <span> *</span></h2>
       <div class="form-row">
         <div class="form-group">
-          <label for="nombre">Nombres</label>
+          <label for="nombre">Primer Nombres</label>
           <input type="text" name="nombre" id="nombre" required size="22">
         </div>
         <div class="form-group">
-          <label for="apellido">Apellidos</label>
+          <label for="nombre2">Segundo Nombres</label>
+          <input type="text" name="nombre2" id="nombre2" required size="22">
+        </div>
+        <div class="form-group">
+          <label for="apellido">Primer Apellidos</label>
           <input type="text" name="apellido" id="apellido" required size="22">
+        </div>
+        <div class="form-group">
+          <label for="apellido2">Segundo Apellidos</label>
+          <input type="text" name="apellido2" id="apellido2" required size="22">
         </div>
         <div class="form-group">
           <label for="cedula">Cédula</label>
           <input type="text" name="cedula" id="cedula" required size="22">
+        </div>
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input type="text" name="edad" id="edad" required size="22">
         </div>
         <div class="form-group">
           <label for="f_nacimiento">Fecha de nacimiento</label>
@@ -245,23 +264,17 @@ Registro
             <option value="beneficio 2">Beneficio 2</option>
           </select>
         </div>
+        <div class="form-group ">
+          <label for="estatus">Estatus</label>
+          <select name="estatus" id="estatus" required>
+            <option value="">Seleccione ...</option>
+            <option value="Aceptado">Aceptado</option>
+            <option value="Rechazado">Rechazado</option>
+          </select>
+        </div>
       </div>
-
-      <h1> </h1>
-      <h2>Estatus <span> *</span></h2>
-      <h1> </h1>
-
       <div class="form-group ">
-        <select name="estatus" id="estatus" required>
-          <option value="">Seleccione ...</option>
-          <option value="Aceptado">Aceptado</option>
-          <option value="Rechazado">Rechazado</option>
-        </select>
-
-        <h1> </h1>
-        <h2>Observacion</h2>
-        <h1> </h1>
-
+        <h1>Observaciones</h1>
         <textarea name="comentario" id="comentario" cols="105" rows="10"> </textarea>
 
       </div>

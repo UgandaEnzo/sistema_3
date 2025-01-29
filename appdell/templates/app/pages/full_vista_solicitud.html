@@ -14,7 +14,7 @@ Full Width
         <li><a href="#">Home</a></li>
         <li><a href="#">login</a></li>
         <li><a href="#">services</a></li>
-        <li><a href="#">busqueda</a></li>
+        <li><a href="#">solicitudes</a></li>
       </ul>
     </div>
   </div>
@@ -39,7 +39,7 @@ Full Width
             border-collapse: collapse; /* Elimina los espacios entre celdas */
         }
     
-        th, td, select,input,button_link {
+        th, td, select,input, .button_link {
             padding: 8px; /* Espaciado interno en celdas */
             text-align: center; /* Alineación del texto */
             border: 1px solid #ddd; /* Bordes de las celdas */
@@ -154,7 +154,6 @@ Full Width
                       <th>Fecha de creacion</th>
                       <th>Residencia</th>
                       <th>Carrera</th>
-                      <th>Fecha de creacion</th>
                       <th>Comentario</th>
                       <th>Reporte de notas</th>
                   </tr>
@@ -173,7 +172,6 @@ Full Width
                       <td>{{ registro.fecha_creacion }}</td>
                       <td>{{ registro.residencia }}</td>
                       <td>{{ registro.carrera }}</td>
-                      <td>{{ registro.fecha_creacion }}</td> 
                       <td>{{ registro.comentario }}</td>
                       <td>
                           {% if registro.reporte_de_notas %}
